@@ -48,28 +48,40 @@ with begin:
     bg.Begin()    
 
 with Brasil:
-    col1, col2= st.columns(spec=[30,70])
+    st.text(" ")
+    st.subheader("Análise Total Exportado por Destino", divider=True)
+    col1, col2, col3 = st.columns(spec=[22,65,13], gap="large")
     with col1:
-        br.load_brasil(df_prod_exp)
+        br.load_brasil(df_country_sum)
 
     with col2:
-        br.load_graf_vol_brasil(df_country_sum)
+        br.load_graf_vol_brasil(df_country_sum)        
+    
+    with col3:
+        br.load_total_brasil(df_country_sum)
 
-    col1, col2= st.columns(spec=2)
+    st.text(" ")
+    col1, col2= st.columns(spec=2, gap="large")
     with col1:
         br.load_graf_usd_brasil(df_country_sum)
 
     with col2:
         br.load_graf_usd_litro_brasil(df_country_sum)
     
-    col1, col2= st.columns(spec=[30,70])
+    st.text(" ")
+    st.subheader("Análise Anual de Produção, Exportação e Variação Cambial ", divider=True)
+    col1, col2, clo3= st.columns(spec=[22,65,13], gap="large")
     with col1:
         br.load_prod_exp_brasil(df_prod_exp)
     
     with col2:
-        br.load_graf_prod_exp_brasil(df_prod_exp)
+        br.load_graf_prod_exp_brasil(df_prod_exp)   
+
+    with clo3:
+        br.load_total_prod_exp_brasil(df_prod_exp)   
     
-    col1, col2, col3 = st.columns(spec=3)
+    st.text(" ")
+    col1, col2, col3 = st.columns(spec=3, gap="large")
     with col1:
         br.load_graf_variacao_prod_anual_brasil(df_prod_exp)
 
