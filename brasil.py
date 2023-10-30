@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
+import DataPreparation as dt
 
 
 ANNOTATIONS = [dict(
@@ -202,3 +203,74 @@ def load_graf_usd_litro_brasil(df_total_top10):
 
     fig.update_traces(texttemplate='US$ %{y:.2s}', textposition='outside', textfont_size=10)
     st.plotly_chart(fig, use_container_width=True)
+
+def load_country_page():
+    df_exportacao = dt.load_export_data()
+    df_country_sum = dt.load_country_sum(df_exportacao)
+    df_prod_exp = dt.load_prod_exp()
+
+    st.text(" ")
+    st.subheader("Análise Total Exportado por Destino", divider=True)
+    st.text(" ")
+    col1, col2 = st.columns(spec=[40,60], gap="large")
+    with col1:
+        load_brasil(df_country_sum)
+
+    with col2:
+        load_graf_vol_brasil(df_country_sum)        
+    
+    st.divider()
+    col1, col2= st.columns(spec=2, gap="large")
+    with col1:
+        load_graf_usd_brasil(df_country_sum)
+
+    with col2:
+        load_graf_usd_litro_brasil(df_country_sum)
+    
+
+    st.divider()
+    col1, col2, col3 = st.columns(spec=3, gap="large")
+    with col1:
+        load_total_litros_brasil(df_country_sum)
+
+    with col2:
+        load_total_usd_brasil(df_country_sum)
+
+    with col3:
+        load_medio_usd_brasil(df_country_sum)
+
+
+    st.divider()
+    st.subheader("Análise Anual de Produção, Exportação e Variação Cambial ", divider=True)
+    st.text(" ")
+    col1, col2 = st.columns(spec=[40,60], gap="large")
+    with col1:
+        load_prod_exp_brasil(df_prod_exp)
+    
+    with col2:
+        load_graf_variacao_prod_anual_brasil(df_prod_exp)
+        
+
+    st.divider()
+    col1, col2 = st.columns(spec=2, gap="large")
+    
+    with col1:
+        load_graf_variacao_exportacao_anual_brasil(df_prod_exp)
+
+    with col2:
+        load_graf_variacao_ptax_brasil(df_prod_exp)
+
+    st.divider()
+    load_graf_prod_exp_brasil(df_prod_exp)   
+    st.divider()
+    col1, col2, col3 = st.columns(spec=3, gap="large")
+    with col1:
+        load_total_prod_brasil(df_prod_exp)
+
+    with col2:
+        load_total_exp_brasil(df_prod_exp)
+
+    with col3:
+        load_total_percent_brasil(df_prod_exp)
+
+    st.divider()
