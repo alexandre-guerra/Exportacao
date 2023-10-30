@@ -46,8 +46,12 @@ with begin:
 
 with Brasil:
     df = br.load_brasil()
-    br.load_ptax_brasil()
+    df_prod = br.load_prod_exp_brasil()
     br.load_graf_vol_brasil(df)
     br.load_graf_usd_brasil(df)
     br.load_graf_usd_litro_brasil(df)
+    br.load_graf_prod_exp_brasil(df_prod)
+    br.load_graf_variacao_prod_anual_brasil(df_prod)
+    br.load_graf_variacao_exportacao_anual_brasil(df_prod)
+    br.load_graf_variacao_ptax_brasil(df_prod)
 
