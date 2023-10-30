@@ -1,26 +1,17 @@
 import streamlit as st
-import DataPreparation as dt
 import plotly.express as px
-import pandas as pd
 import plotly.graph_objects as go
 
 
-def load_brasil():
-    df_exportacao = dt.load_export_data()
-    df_total_por_pais = dt.load_country_sum(df_exportacao)   
-    st.header("Exportações Brasileiras de Vinhos")
-    st.dataframe(df_total_por_pais, hide_index=True)
+def load_brasil(df_total_por_pais):
+    st.subheader("Exportações Brasileiras de Vinhos")
+    st.dataframe(df_total_por_pais, hide_index=True, use_container_width=True)
     return df_total_por_pais
 
 
-def load_prod_exp_brasil():
-    df_producao_exportacao = pd.read_excel('./ProducaoExportacao.xlsx')
-    df_producao_exportacao['Ano'] = df_producao_exportacao['Ano'].astype('str')
-    df_producao_exportacao['Produzido'] = df_producao_exportacao['Produzido'].astype(float)
-    df_producao_exportacao['Exportado'] = df_producao_exportacao['Exportado'].astype(float)
-    df_producao_exportacao['PTAX'] = df_producao_exportacao['PTAX'].astype(float)
-    st.header("Produção vs Exportação vs PTAX")
-    st.dataframe(df_producao_exportacao, hide_index=True)
+def load_prod_exp_brasil(df_producao_exportacao):
+    st.subheader("Produção vs Exportação vs PTAX")
+    st.dataframe(df_producao_exportacao, hide_index=True, use_container_width=True)
     return df_producao_exportacao
 
 

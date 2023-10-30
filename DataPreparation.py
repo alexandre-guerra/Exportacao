@@ -37,3 +37,11 @@ def load_country_sum(df_exportacao):
     df_total_por_pais.reset_index(inplace=True)
     df_total_por_pais['USD_por_Litro'] = df_total_por_pais['USD'] / df_total_por_pais['Litros']
     return df_total_por_pais
+
+def load_prod_exp():
+    df_producao_exportacao = pd.read_excel('./ProducaoExportacao.xlsx')
+    df_producao_exportacao['Ano'] = df_producao_exportacao['Ano'].astype('str')
+    df_producao_exportacao['Produzido'] = df_producao_exportacao['Produzido'].astype(float)
+    df_producao_exportacao['Exportado'] = df_producao_exportacao['Exportado'].astype(float)
+    df_producao_exportacao['PTAX'] = df_producao_exportacao['PTAX'].astype(float)
+    return df_producao_exportacao
