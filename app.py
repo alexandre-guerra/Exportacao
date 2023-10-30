@@ -3,50 +3,26 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+import begin as bg
+import DataPreparation as dt
 
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)
 pd.options.display.float_format = '{:,.2f}'.format
 
-df = pd.read_excel('./ExportacaoVinhos.xlsx')
-df_inicial = df[df.columns[0:31]]
 
-df_melted = pd.melt(df_inicial, id_vars=[
-                    'Pais'], var_name='Ano e Valor', value_name='Quantidade')
-df_melted[['Ano', 'Valor']] = df_melted['Ano e Valor'].str.split(
-    '_', expand=True)
-df_exportacao = df_melted.pivot(
-    index=['Pais', 'Ano'], columns='Valor', values='Quantidade').reset_index()
-df_exportacao.columns.name = None
-df_exportacao = df_exportacao.rename(
-    columns={'KG': 'Litros', 'Pais': 'Destino'})
-df_exportacao['Origem'] = 'Brasil'
-df_exportacao['Ano'] = pd.to_datetime(df_exportacao['Ano'], format='%Y')
-df_exportacao['Litros'] = df_exportacao['Litros'].astype(float)
-df_exportacao['USD'] = df_exportacao['USD'].astype(float)
+st.set_page_config(
+    page_title="Exportação de Vinhos Brasileiros",
+    layout="wide"
+)
 
-df_total_por_pais = df_exportacao.groupby(['Origem', 'Destino']).sum(
-    ['Litros', 'USD']).sort_values('Litros', ascending=False)
-df_total_por_pais.reset_index(inplace=True)
-df_total_por_pais['USD_por_Litro'] = df_total_por_pais['USD'] / \
-    df_total_por_pais['Litros']
-
-top10 = df_total_por_pais.sort_values('Litros', ascending=False)[
-    'Destino'].head(10).to_list()
-
-df_total_top10 = df_total_por_pais[df_total_por_pais['Destino'].isin(top10)]
-df_exportacao_top10 = df_exportacao[df_exportacao['Destino'].isin(top10)]
-
-fig = px.bar(df_total_top10, x='Destino', y=[
-             'Litros'], title='Litros exportados destino')
 
 
 st.title("Análise das Exportações de Vinhos Brasileiros (2008-2022)")
 
-
 # Navegação
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13, tab14 = st.tabs(['Início',
+begin, Brasil, Paraguai, EstadosUnidos, China, Espanha, Haiti, ReinoUnido, PaisesBaixos, Japao, Alemanha, Uruguai, Conclusao, Bibliografia = st.tabs(['Início',
                                                                                                    'Brasil',
                                                                                                    'Paraguai',
                                                                                                    'Estados Unidos',
@@ -59,41 +35,18 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12, tab13
                                                                                                    'Alemanha',
                                                                                                    'Uruguai',
                                                                                                    'Conclusão',
-                                                                                                   'Bibliográfia'])
+                                                                                                   'Bibliografia'])
 
 
-def Begin():
-    st.header("Introdução")
-    st.write(f"""
-                O Brasil, reconhecido por sua rica diversidade vitivinícola, é um robusto produtor de vinhos. Contudo, curiosamente, apenas cerca de 2% desta produção é exportada, conforme indicado pelos registros da ApexBrasil. A boa notícia é que este cenário vem evoluindo positivamente. A cada ano, observamos um incremento tanto na quantidade quanto nos valores de vinhos exportados. Esta ascensão é, em grande parte, atribuída aos esforços e investimentos da ApexBrasil, especialmente por meio de seu projeto "Setorial Wines of Brazil", executado em colaboração com a União Brasileira de Vitivinicultura.
-
-                Distribuídas de norte a sul do país, temos mais de 1.100 vinícolas, com a região Sul se destacando por contribuir com aproximadamente 90% da produção vinícola nacional.
-
-                As estatísticas detalhadas sobre a produção e exportação dos vinhos brasileiros foram extraídas do site: vitibrasil.cnpuv.embrapa.br
-                """)
-
-    st.header("Critérios de Seleção de Dados")
-    st.write(f"""
-                Para garantir uma análise precisa e significativa, foram estabelecidos os seguintes critérios de exclusão:
-
-                Países que importaram menos de 1.000 litros ao longo dos 15 anos em estudo.
-                Países que realizaram apenas 1 ou 2 compras durante o período investigado, excluindo transações realizadas em 2021 e 2022 (categorizados como compradores eventuais).
-                Exclusão de dados relacionados à Rússia devido a uma anomalia em 2009, atribuída a um acordo comercial específico. Além disso, as incertezas associadas ao conflito com a Ucrânia tornam arriscado contar com esta parceria no momento atual.
-                """)
-
-    st.header("Amostra Analisada")
-    st.write(f"""
-                Optei por direcionar a análise para os top 10 países em volume de exportação, os quais, juntos, representam impressionantes 90,82% do total de nossos registros.
-                """)
 
 
-with tab1:
-    Begin()
 
-with tab2:
-    st.header("A dog")
-    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+with begin:
+    bg.Begin()
 
-with tab3:
-    st.header("An owl")
-    st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
+with Brasil:
+    df_exportacao = dt.load_export_data()
+    df_total_por_pais = dt.load_country_sum(df_exportacao)
+    st.header("Exportações Brasileiras de Vinhos")
+    st.dataframe(df_total_por_pais, use_container_width=True)
+
