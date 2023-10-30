@@ -46,6 +46,8 @@ with begin:
 
 with Brasil:
     df = br.load_brasil()
+    br.load_ptax_brasil()
     br.load_graf_vol_brasil(df)
     br.load_graf_usd_brasil(df)
+    br.load_graf_usd_litro_brasil(df)
 
