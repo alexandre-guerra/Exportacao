@@ -4,7 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 import begin as bg
-import DataPreparation as dt
+import brasil as br
 
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)
@@ -45,8 +45,5 @@ with begin:
     bg.Begin()
 
 with Brasil:
-    df_exportacao = dt.load_export_data()
-    df_total_por_pais = dt.load_country_sum(df_exportacao)
-    st.header("Exportações Brasileiras de Vinhos")
-    st.dataframe(df_total_por_pais, use_container_width=True)
+    br.load_brasil()
 
