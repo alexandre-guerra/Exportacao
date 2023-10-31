@@ -4,11 +4,13 @@ import graficos_pais as gp
 
 def load_total(df_pais, variavel):
     metrica = df_pais[variavel].sum()
-    st.metric(label=f"{variavel} Total", value="{:,.0f}".format(metrica))
+    st.subheader(f"{variavel} Total", divider=True)
+    st.header("{:,.0f}".format(metrica))
 
 def load_saldo(df_pais):
     metrica = df_pais['Produção'].sum() + df_pais['Importação'].sum() - df_pais['Exportação'].sum() - df_pais['Consumo'].sum()
-    st.metric(label=f"Saldo", value="{:,.0f}".format(metrica))
+    st.subheader(f"Saldo Total", divider=True)
+    st.header("{:,.0f}".format(metrica))
 
 def conclusion():
 
@@ -113,7 +115,7 @@ def Bibliography():
 def load_country_page(pais):
 
     st.text(" ")
-    st.subheader(f"{pais} - Análise Anualizada", divider=True)
+    st.subheader(f":blue[{pais}] - Análise Anualizada", divider=True)
     st.text(" ")
 
     (figs, df_pivot) = gp.load_grafs(pais)
@@ -137,11 +139,22 @@ def load_country_page(pais):
         st.plotly_chart(figs[1], use_container_width=True)
 
     with col2:
+        st.header(" ")
         load_total(df_pivot, 'Consumo')
+        st.header(" ")
         load_total(df_pivot, 'Importação')
+    
+    st.divider()
+
+    col1, col2, col3 = st.columns(spec=3, gap="large")
+    with col1:
         load_total(df_pivot, 'Produção')
+    
+    with col2:
         load_total(df_pivot, 'Exportação')
+    
+    with col3:
         load_saldo(df_pivot)
-        
-        
+
+
     st.divider()

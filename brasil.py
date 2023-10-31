@@ -26,18 +26,21 @@ def load_brasil(df_total_por_pais):
 def load_total_litros_brasil(df_total_por_pais):    
     left, center, right = st.columns([1, 2, 1])
     with center:  
-        st.metric(label="Total Litros", value="{:,.0f}".format(df_total_por_pais['Litros'].sum()))
+        st.subheader("Total Litros", divider=True)        
+        st.header("{:,.0f}".format(df_total_por_pais['Litros'].sum()))
     
 
 def load_total_usd_brasil(df_total_por_pais):
     left, center, right = st.columns([1, 2, 1])
     with center:
-        st.metric(label="Total US$", value="{:,.0f}".format(df_total_por_pais['USD'].sum()))
+        st.subheader("Total US$", divider=True)
+        st.header("{:,.0f}".format(df_total_por_pais['USD'].sum()))
 
 def load_medio_usd_brasil(df_total_por_pais):
     left, center, right = st.columns([1, 2, 1])
-    with center:  
-        st.metric(label="US$ Médio", value="{:,.4f}".format(df_total_por_pais['USD_por_Litro'].mean()))
+    with center:
+        st.subheader("US$ Médio", divider=True)
+        st.header("{:,.4f}".format(df_total_por_pais['USD_por_Litro'].mean()))
 
 
 def load_prod_exp_brasil(df_producao_exportacao):
@@ -49,20 +52,24 @@ def load_total_prod_brasil(df_producao_exportacao):
     left, center, right = st.columns([1, 3, 1])
     with center:  
         total_produzido = df_producao_exportacao['Produzido'].sum()
-        st.metric(label="Total Produzido", value="{:,.0f}".format(total_produzido))
+        st.subheader("Total Produzido", divider=True)
+        st.header("{:,.0f}".format(total_produzido))
 
 
 def load_total_exp_brasil(df_producao_exportacao):
     left, center, right = st.columns([1, 2, 1])
     with center:  
         total_exportado = df_producao_exportacao['Exportado'].sum()
-        st.metric(label="Total Exportado", value="{:,.0f}".format(total_exportado))
+        st.subheader("Total Exportado", divider=True)
+        st.header("{:,.0f}".format(total_exportado))
+
 
 def load_total_percent_brasil(df_producao_exportacao):
     left, center, right = st.columns([1, 2, 1])
     with center:
         percentual_exportado = (df_producao_exportacao['Exportado'].sum()/df_producao_exportacao['Produzido'].sum()) * 100
-        st.metric(label="Percentual Exportado", value="{:,.2f}%".format(percentual_exportado))
+        st.subheader("Percentual Exportado", divider=True)
+        st.header("{:,.2f}%".format(percentual_exportado))
 
 
 def load_graf_prod_exp_brasil(df_producao_exportacao):
