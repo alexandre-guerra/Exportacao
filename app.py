@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import begin as bg
 import brasil as br
-import alemanha as al
+import country_pages as cp
 import DataPreparation as dt
 
 pd.set_option("display.max_rows", None)
@@ -45,5 +45,40 @@ with Brasil:
     br.load_country_page()
 
 with Alemanha:
-    al.load_country_page('Alemanha')
+    cp.load_country_page('Alemanha')
+
+with Paraguai:
+    cp.load_country_page('Paraguai')
+
+with EstadosUnidos:
+    cp.load_country_page('Estados Unidos')
+
+with China:
+    cp.load_country_page('China')
+
+with Espanha:
+    cp.load_country_page('Espanha')
+
+with Haiti:
+    cp.load_country_page('Haiti')
+
+with ReinoUnido:
+    cp.load_country_page('Reino Unido')
+
+with PaisesBaixos:
+    cp.load_country_page('Paises Baixos')
+
+with Japao:
+    cp.load_country_page('Japão')
+
+with Uruguai:
+    cp.load_country_page('Uruguai')
+
+with Conclusao:
+    cp.conclusion()
+
+with Bibliografia:
+    cp.Bibliography()
+
+
     
