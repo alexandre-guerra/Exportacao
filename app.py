@@ -7,6 +7,7 @@ import begin as bg
 import brasil as br
 import country_pages as cp
 import DataPreparation as dt
+from pathlib import Path
 
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)
@@ -17,6 +18,25 @@ st.set_page_config(
     layout="wide",
     page_icon="🍷"
 )
+
+# custom_html = """
+# <div class="banner">
+#     <img src="https://img.freepik.com/premium-photo/wide-banner-with-many-random-square-hexagons-charcoal-dark-black-color_105589-1820.jpg" alt="Banner Image">
+# </div>
+# <style>
+#     .banner {
+#         width: 160%;
+#         height: 200px;
+#         overflow: hidden;
+#     }
+#     .banner img {
+#         width: 100%;
+#         object-fit: cover;
+#     }
+# </style>
+# """
+# # Display the custom HTML
+# st.components.v1.html(custom_html)
 
 # st.markdown(""" <style>
 # #MainMenu {visibility: hidden;}
@@ -31,8 +51,12 @@ st.markdown(f""" <style>
         padding-bottom: {0}rem;
     }} </style> """, unsafe_allow_html=True)
 
-
-st.title("Análise das Exportações de Vinhos Brasileiros (2008-2022)")
+col1, col2 = st.columns(spec=[15,75], gap="medium")
+with col1:
+    st.image('https://raw.githubusercontent.com/alexandre-guerra/Exportacao/master/garrafa.jpg', use_column_width=True)
+with col2:
+    st.header(" ",divider='rainbow')
+    st.title(":gray[Análise das Exportações de Vinhos Brasileiros 2008-2022]")
 
 # Navegação
 
