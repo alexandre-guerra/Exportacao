@@ -11,14 +11,44 @@ def load_saldo(df_pais):
     st.metric(label=f"Saldo", value="{:,.0f}".format(metrica))
 
 def conclusion():
-    st.header("Conclusão")
-    st.write(f"""
-                O Brasil, reconhecido por sua rica diversidade vitivinícola, é um robusto produtor de vinhos. Contudo, curiosamente, apenas cerca de 2% desta produção é exportada, conforme indicado pelos registros da ApexBrasil. A boa notícia é que este cenário vem evoluindo positivamente. A cada ano, observamos um incremento tanto na quantidade quanto nos valores de vinhos exportados. Esta ascensão é, em grande parte, atribuída aos esforços e investimentos da ApexBrasil, especialmente por meio de seu projeto "Setorial Wines of Brazil", executado em colaboração com a União Brasileira de Vitivinicultura.
+    st.title("Análise de Viabilidade de Exportação de Vinhos")
 
-                Distribuídas de norte a sul do país, temos mais de 1.100 vinícolas, com a região Sul se destacando por contribuir com aproximadamente 90% da produção vinícola nacional.
+    st.subheader("Dados e Análise - Estados Unidos")
+    st.write("""
+    Com base nos gráficos e dados fornecidos, aqui está uma análise preliminar:
 
-                As estatísticas detalhadas sobre a produção e exportação dos vinhos brasileiros foram extraídas do site: vitibrasil.cnpuv.embrapa.br
-                """)
+    1. **Comparativo de Dados Anuais**: 
+        - **Consumo**: O consumo tem sido bastante estável ao longo dos anos. 
+        - **Produção**: A produção parece ter aumentado nos primeiros anos e depois se estabilizou.
+        - **Exportação**: A exportação teve altos e baixos ao longo dos anos, mas nota-se uma queda acentuada em 2020 e 2022.
+
+    2. **Importações do Brasil por Ano**: 
+        - Houve uma diminuição geral nas importações ao longo dos anos, com algumas oscilações. A maior importação foi em 2008 com 440k e a menor em 2022 com 110k.
+
+    3. **Projeção de Inflação**:
+        - Espera-se que a inflação diminua nos próximos anos, o que pode favorecer o poder de compra dos consumidores.
+
+    4. **Saldo Anual com Linha de Tendência**:
+        - O saldo foi negativo na maioria dos anos, o que indica que o valor das importações superou o das exportações. No entanto, o saldo está melhorando ao longo dos anos, indicando uma tendência positiva.
+
+    5. **Dados Adicionais**:
+        - **Consumo Total**: 46,494,800,000
+        - **Importação Total**: 16,918,300,000
+        - **Produção Total**: 34,792,400,000
+        - **Exportação Total**: 5,713,200,000
+        - **Saldo**: -497,300,000
+
+    Conclusão:
+    O mercado brasileiro de vinhos apresenta um consumo estável e uma produção considerável. No entanto, as exportações são relativamente baixas em comparação com a produção, e o saldo é negativo, indicando que as importações superam as exportações.
+
+    Ao considerar a exportação de vinhos para os EUA, é importante avaliar:
+    - A qualidade e diferenciação dos vinhos brasileiros em relação aos vinhos já disponíveis nos EUA.
+    - Os custos de exportação e as tarifas de importação nos EUA.
+    - O potencial de marketing e a aceitação dos consumidores americanos.
+
+    Dada a projeção de diminuição da inflação, pode haver uma oportunidade de aumentar a competitividade no mercado americano, mas é essencial considerar todos os fatores mencionados acima antes de tomar uma decisão.
+    """)
+
 
 def Bibliography():
     st.header("Bibliografia")
@@ -46,7 +76,7 @@ def Bibliography():
 
     Organização Internacional da Vinha e do Vinho (OIV). (15/10/2023). Estatísticas. https://www.oiv.int/what-we-do/statistics
     """)
-    
+
 
 def load_country_page(pais):
 

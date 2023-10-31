@@ -18,6 +18,7 @@ st.set_page_config(
     layout="wide"
 )
 
+
 st.title("Análise das Exportações de Vinhos Brasileiros (2008-2022)")
 
 # Navegação
