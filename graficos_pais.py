@@ -32,7 +32,7 @@ def load_grafs(pais):
                 title=f'Brasil para {pais} por ano',
                 labels={'Litros': 'Litros Exportados', 'Ano': 'Ano'})
     
-    fig_destino.update_layout(title=f'Brasil para {pais} por ano',
+    fig_destino.update_layout(title=f'Importações do Brasil por Ano',
                     xaxis_title='Anos',
                     yaxis_title='Litros',
                     legend_title_text='',
@@ -52,7 +52,7 @@ def load_grafs(pais):
                 y=["Consumo", "Importação", "Produção", "Exportação"],
                 barmode="group")
     
-    fig_dados.update_layout(title=f'Dados - {pais}',
+    fig_dados.update_layout(title=f'Comparativo de Dados Anuais',
                     xaxis_title='Anos',
                     yaxis_title='Litros',
                     legend_title_text='',
