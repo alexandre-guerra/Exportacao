@@ -26,20 +26,20 @@ def load_brasil(df_total_por_pais):
 def load_total_litros_brasil(df_total_por_pais):    
     left, center, right = st.columns([1, 2, 1])
     with center:  
-        st.subheader("Total Litros", divider=True)        
+        st.subheader("$\sum$ Litros", divider='rainbow')
         st.header("{:,.0f}".format(df_total_por_pais['Litros'].sum()))
     
 
 def load_total_usd_brasil(df_total_por_pais):
     left, center, right = st.columns([1, 2, 1])
     with center:
-        st.subheader("Total US$", divider=True)
+        st.subheader("$\sum$ USD", divider='rainbow')
         st.header("{:,.0f}".format(df_total_por_pais['USD'].sum()))
 
 def load_medio_usd_brasil(df_total_por_pais):
     left, center, right = st.columns([1, 2, 1])
     with center:
-        st.subheader("US$ Médio", divider=True)
+        st.subheader("$\overline{USD}$ Por Litro", divider='rainbow')
         st.header("{:,.4f}".format(df_total_por_pais['USD_por_Litro'].mean()))
 
 
@@ -52,7 +52,7 @@ def load_total_prod_brasil(df_producao_exportacao):
     left, center, right = st.columns([1, 3, 1])
     with center:  
         total_produzido = df_producao_exportacao['Produzido'].sum()
-        st.subheader("Total Produzido", divider=True)
+        st.subheader("$\sum$ Produzido", divider='rainbow')
         st.header("{:,.0f}".format(total_produzido))
 
 
@@ -60,7 +60,7 @@ def load_total_exp_brasil(df_producao_exportacao):
     left, center, right = st.columns([1, 2, 1])
     with center:  
         total_exportado = df_producao_exportacao['Exportado'].sum()
-        st.subheader("Total Exportado", divider=True)
+        st.subheader("$\sum$ Exportado", divider='rainbow')
         st.header("{:,.0f}".format(total_exportado))
 
 
@@ -68,7 +68,7 @@ def load_total_percent_brasil(df_producao_exportacao):
     left, center, right = st.columns([1, 2, 1])
     with center:
         percentual_exportado = (df_producao_exportacao['Exportado'].sum()/df_producao_exportacao['Produzido'].sum()) * 100
-        st.subheader("Percentual Exportado", divider=True)
+        st.subheader("$\%$ Exportado", divider='rainbow')
         st.header("{:,.2f}%".format(percentual_exportado))
 
 
@@ -217,7 +217,7 @@ def load_country_page():
     df_prod_exp = dt.load_prod_exp()
 
     st.text(" ")
-    st.subheader("Análise Total Exportado por Destino", divider=True)
+    st.subheader("Brasil - Análise Total Exportado por Destino", divider='rainbow')
     st.text(" ")
     col1, col2 = st.columns(spec=[40,60], gap="large")
     with col1:
@@ -248,7 +248,7 @@ def load_country_page():
 
 
     st.divider()
-    st.subheader("Análise Anual de Produção, Exportação e Variação Cambial ", divider=True)
+    st.subheader("Análise Anual de Produção, Exportação e Variação Cambial ", divider='rainbow')
     st.text(" ")
     col1, col2 = st.columns(spec=[40,60], gap="large")
     with col1:

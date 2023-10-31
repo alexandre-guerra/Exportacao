@@ -23,14 +23,6 @@ st.title("Análise das Exportações de Vinhos Brasileiros (2008-2022)")
 
 # Navegação
 
-st.markdown("""
-    <style>
-        .st-emotion-cache-1svgoqi >p {
-            font-size: 17px;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 begin, Brasil, Paraguai, EstadosUnidos, China, Espanha, Haiti, ReinoUnido, PaisesBaixos, Japao, Alemanha, Uruguai, Conclusao, Bibliografia = st.tabs(['Início',
                                                                                                    'Brasil',
                                                                                                    'Paraguai',

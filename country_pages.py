@@ -4,18 +4,18 @@ import graficos_pais as gp
 
 def load_total(df_pais, variavel):
     metrica = df_pais[variavel].sum()
-    st.subheader(f"{variavel} Total", divider=True)
+    st.subheader(f'$\sum$ {variavel}', divider='rainbow')
     st.header("{:,.0f}".format(metrica))
 
 def load_saldo(df_pais):
     metrica = df_pais['Produção'].sum() + df_pais['Importação'].sum() - df_pais['Exportação'].sum() - df_pais['Consumo'].sum()
-    st.subheader(f"Saldo Total", divider=True)
+    st.subheader('$\sum$ Saldo Total', divider='rainbow')
     st.header("{:,.0f}".format(metrica))
 
 def conclusion():
 
     st.text(" ")
-    st.subheader("Análise de Viabilidade de Exportação de Vinhos Brasileiros", divider=True)
+    st.subheader("Análise de Viabilidade de Exportação de Vinhos Brasileiros", divider='rainbow')
     st.text(" ")
     st.markdown(f"""  
     ##### Produção
@@ -38,9 +38,9 @@ def conclusion():
     Considerando a recuperação na produção e a taxa de câmbio ainda elevada (apesar da pequena retração em 2022), pode ser um momento viável para entrar no mercado de exportação de vinhos. A desvalorização da moeda local pode ajudar a tornar os vinhos brasileiros mais competitivos em termos de preço no mercado internacional.
     """)
 
-    st.divider()
+    
     st.text(" ")
-    st.subheader("Prospecções futuras e possíveis ações para uma melhoria", divider=True)
+    st.subheader("Prospecções futuras e possíveis ações para uma melhoria", divider='rainbow')
     st.text(" ")
 
 
@@ -84,7 +84,7 @@ def conclusion():
 
 def Bibliography():
     st.text(" ")
-    st.subheader("Bibliografia", divider=True)
+    st.subheader("Bibliografia", divider='rainbow')
     st.text(" ")
 
     st.write("""
@@ -115,7 +115,7 @@ def Bibliography():
 def load_country_page(pais):
 
     st.text(" ")
-    st.subheader(f":blue[{pais}] - Análise Anualizada", divider=True)
+    st.subheader(f"{pais}", divider='rainbow')
     st.text(" ")
 
     (figs, df_pivot) = gp.load_grafs(pais)

@@ -2,7 +2,7 @@ import streamlit as st
 
 def Begin():
     st.text(" ")
-    st.subheader("Introdução", divider=True)
+    st.subheader("Introdução", divider='rainbow')
     st.text(" ")
     st.write(f"""
                 O Brasil, reconhecido por sua rica diversidade vitivinícola, é um robusto produtor de vinhos. Contudo, curiosamente, apenas cerca de 2% desta produção é exportada, conforme indicado pelos registros da ApexBrasil. A boa notícia é que este cenário vem evoluindo positivamente. A cada ano, observamos um incremento tanto na quantidade quanto nos valores de vinhos exportados. Esta ascensão é, em grande parte, atribuída aos esforços e investimentos da ApexBrasil, especialmente por meio de seu projeto "Setorial Wines of Brazil", executado em colaboração com a União Brasileira de Vitivinicultura.
@@ -13,7 +13,7 @@ def Begin():
                 """)
 
     st.text(" ")
-    st.subheader("Critérios de Seleção de Dados", divider=True)
+    st.subheader("Critérios de Seleção de Dados", divider='rainbow')
     st.text(" ")
     st.write(f"""
                 Para garantir uma análise precisa e significativa, foram estabelecidos os seguintes critérios de exclusão:
@@ -25,7 +25,7 @@ def Begin():
 
     
     st.text(" ")
-    st.subheader("Amostra Analisada", divider=True)
+    st.subheader("Amostra Analisada", divider='rainbow')
     st.text(" ")
 
     selected_countries = [
