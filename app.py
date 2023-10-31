@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import begin as bg
 import brasil as br
+import alemanha as al
 import DataPreparation as dt
 
 pd.set_option("display.max_rows", None)
@@ -42,3 +43,7 @@ with begin:
 
 with Brasil:
     br.load_country_page()
+
+with Alemanha:
+    al.load_country_page('Alemanha')
+    

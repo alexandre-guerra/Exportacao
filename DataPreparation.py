@@ -5,10 +5,6 @@ import warnings
 import plotly.express as px
 import plotly.graph_objects as go
 
-warnings.filterwarnings('ignore')
-np.random.seed(42)
-pd.set_option("display.max_rows", None)
-pd.set_option("display.max_columns", None)
 pd.options.display.float_format = '{:,.2f}'.format
 
 selected_countries = [
@@ -38,6 +34,7 @@ def load_country_sum(df_exportacao):
     df_total_por_pais['USD_por_Litro'] = df_total_por_pais['USD'] / df_total_por_pais['Litros']
     return df_total_por_pais
 
+
 def load_prod_exp():
     df_producao_exportacao = pd.read_excel('./ProducaoExportacao.xlsx')
     df_producao_exportacao['Ano'] = df_producao_exportacao['Ano'].astype('str')
@@ -45,3 +42,23 @@ def load_prod_exp():
     df_producao_exportacao['Exportado'] = df_producao_exportacao['Exportado'].astype(float)
     df_producao_exportacao['PTAX'] = df_producao_exportacao['PTAX'].astype(float)
     return df_producao_exportacao
+
+
+def load_top10():
+    df_top10 = pd.read_excel('./top10.xlsx')
+    df_top10['Ano'] = pd.to_datetime(df_top10['Ano'], format='%Y')
+    df_top10['Litros'] = df_top10['Litros'].astype(float)
+    
+    df_pivot = df_top10.pivot_table(index=['Ano', 'Pais'], columns='Variavel', values='Litros', aggfunc='sum').reset_index()
+    df_pivot.fillna(0, inplace=True)
+    df_pivot['Saldo'] =  df_pivot['Produção'] + df_pivot['Importação'] - df_pivot['Exportação'] - df_pivot['Consumo']
+
+    return df_pivot
+    
+
+def load_economia():
+    df_economia = pd.read_excel('./WEO_Data.xlsx')
+    df_economia['Ano'] = pd.to_datetime(df_economia['Ano'], format='%Y')
+    df_pivot_economia = df_economia.pivot_table(index=['Ano', 'Pais'], columns='Variavel', values='Percentual', aggfunc='sum').reset_index()
+    df_pivot_economia.fillna(0, inplace=True)
+    return df_pivot_economia
