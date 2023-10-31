@@ -15,6 +15,7 @@ ANNOTATIONS = [dict(
 TITLE = dict(size=20)
 STANDOFF = 30
 
+
 def load_grafs(pais):
     figs = []
 
@@ -49,7 +50,8 @@ def load_grafs(pais):
     fig_dados = px.bar(df_pais,
                 x="Ano",
                 y=["Consumo", "Importação", "Produção", "Exportação"],
-                barmode="group")
+                barmode="group",
+                color_discrete_sequence= px.colors.sequential.Blues_r)
     
     fig_dados.update_layout(title=f'Comparativo de Dados Anuais',
                     xaxis_title='Anos',
@@ -57,15 +59,18 @@ def load_grafs(pais):
                     legend_title_text='',
                     yaxis_type="log",
                     xaxis_title_standoff=STANDOFF,
-                    title_font=TITLE, 
+                    title_font=TITLE,
                     template="plotly_dark",
+                    yaxis_showticklabels=False,
                     xaxis=dict(tickvals=df_pais['Ano'], ticktext=df_pais['Ano'].dt.year),
                     annotations=ANNOTATIONS)
+    
+    fig_dados.update_traces(texttemplate='%{y:.2s}', textposition='outside', textfont_size=10)
 
     fig_saldo = go.Figure()
     fig_saldo.add_trace(go.Bar(x=df_pais['Ano'], y=df_pais['Saldo'], name='Saldo'))
     fig_saldo.update_traces(texttemplate='%{y:.2s}', textposition='outside', textfont_size=10)
-    fig_saldo.add_trace(go.Scatter(x=df_pais['Ano'], y=df_pais['Saldo'], mode='lines', name='Tendência', line=dict(color='red')))
+    fig_saldo.add_trace(go.Scatter(x=df_pais['Ano'], y=df_pais['Saldo'], mode='lines', name='Tendência'))
     
     fig_saldo.update_layout(title=f'Saldo Anual com Linha de Tendência',
                     xaxis_title='Anos',
@@ -73,6 +78,7 @@ def load_grafs(pais):
                     legend_title_text='',
                     showlegend=False, 
                     title_font=TITLE,
+                    yaxis_showticklabels=False,
                     xaxis_title_standoff=STANDOFF,
                     template="plotly_dark",
                     xaxis=dict(tickvals=df_pivot['Ano'], ticktext=df_pivot['Ano'].dt.year),

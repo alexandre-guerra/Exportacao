@@ -112,6 +112,7 @@ def Bibliography():
     """)
     st.divider()
 
+
 def load_country_page(pais):
 
     st.text(" ")
@@ -120,7 +121,7 @@ def load_country_page(pais):
 
     (figs, df_pivot) = gp.load_grafs(pais)
 
-    st.plotly_chart(figs[0], use_container_width=True)
+    st.plotly_chart(figs[0], use_container_width=True, )
 
     st.divider()
     col1, col2 = st.columns(spec=[70,30], gap="large")
