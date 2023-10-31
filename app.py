@@ -51,11 +51,21 @@ st.markdown(f""" <style>
         padding-bottom: {0}rem;
     }} </style> """, unsafe_allow_html=True)
 
+css = '''
+<style>
+    .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+    font-size:1.2rem;
+    }
+</style>
+'''
+
+st.markdown(css, unsafe_allow_html=True)
+
 col1, col2 = st.columns(spec=[15,75], gap="medium")
 with col1:
     st.image('https://raw.githubusercontent.com/alexandre-guerra/Exportacao/master/garrafa.jpg', use_column_width=True)
 with col2:
-    st.header(" ",divider='rainbow')
+    st.header(" ")
     st.title(":gray[Análise das Exportações de Vinhos Brasileiros 2008-2022]")
 
 # Navegação
