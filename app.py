@@ -54,7 +54,7 @@ st.markdown(f""" <style>
 css = '''
 <style>
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-    font-size:1.2rem;
+    font-size:1.15rem;
     }
 </style>
 '''
@@ -66,7 +66,7 @@ with col1:
     st.image('https://raw.githubusercontent.com/alexandre-guerra/Exportacao/master/garrafa.jpg', use_column_width=True)
 with col2:
     st.header(" ")
-    st.title(":gray[Análise das Exportações de Vinhos Brasileiros 2008-2022]")
+    st.title(":gray[Exportações de Vinhos Brasileiros 2008-2022]")
 
 # Navegação
 
