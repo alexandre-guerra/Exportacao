@@ -19,29 +19,11 @@ st.set_page_config(
     page_icon="🍷"
 )
 
-# custom_html = """
-# <div class="banner">
-#     <img src="https://img.freepik.com/premium-photo/wide-banner-with-many-random-square-hexagons-charcoal-dark-black-color_105589-1820.jpg" alt="Banner Image">
-# </div>
-# <style>
-#     .banner {
-#         width: 160%;
-#         height: 200px;
-#         overflow: hidden;
-#     }
-#     .banner img {
-#         width: 100%;
-#         object-fit: cover;
-#     }
-# </style>
-# """
-# # Display the custom HTML
-# st.components.v1.html(custom_html)
 
-# st.markdown(""" <style>
-# #MainMenu {visibility: hidden;}
-# footer {visibility: hidden;}
-# </style> """, unsafe_allow_html=True)
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
 
 st.markdown(f""" <style>
     .appview-container .main .block-container{{
